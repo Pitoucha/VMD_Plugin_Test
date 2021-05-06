@@ -48,7 +48,15 @@ proc ::testpackagepy::packageui {} {
   
   set w [toplevel .packageui]
   wm title $w "CARV+"
-
+  
+  frame $w.menubar -relief raised -bd 2;
+  pack $w.menubar -padx 1 -fill x
+  menubutton $w.menubar.file -text File -underline 0 -menu $w.menubar.file.menu
+  menu $w.menubar.file.menu -tearoff no
+  $w.menubar.file.menu add command -label "Hello" -command  ::testpackagepy::hello
+  $w.menubar.file config -width 5
+  pack $w.menubar.file -side left
+  
   #set wif [frame $w.interface_frame]
   #tk_optionMenu $wif.list ::testpackagepy::which_mode
   #$wif.list.menu delete 0
@@ -66,8 +74,13 @@ proc ::testpackagepy::packageui {} {
   
   set testMenu [frame $w.interface_frame]
   
+  pack $w.menubar
   
   return $w
+}
+
+proc ::testpackagepy::hello {} {
+  puts "Hello world"
 }
 
 
