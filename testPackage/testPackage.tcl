@@ -54,8 +54,11 @@ proc ::testpackagepy::packageui {} {
   menubutton $w.menubar.file -text File -underline 0 -menu $w.menubar.file.menu
   menu $w.menubar.file.menu -tearoff no
   $w.menubar.file.menu add command -label "Hello" -command  ::testpackagepy::hello
+  $w.menubar.file.menu add command -label "Hello but in python" -command ::testpackagepy::hellopy
   $w.menubar.file config -width 5
   pack $w.menubar.file -side left
+  
+  pack $w.menubar
   
   #set wif [frame $w.interface_frame]
   #tk_optionMenu $wif.list ::testpackagepy::which_mode
@@ -74,13 +77,17 @@ proc ::testpackagepy::packageui {} {
   
   set testMenu [frame $w.interface_frame]
   
-  pack $w.menubar
-  
   return $w
 }
 
 proc ::testpackagepy::hello {} {
   puts "Hello world"
+}
+
+proc ::testpackagepy::hellopy {} {
+  set pyprefix {gopython}
+  puts "[$pyprefix "hello.py"]"
+  puts "[$pyprefix -command helloworld()]"
 }
 
 
